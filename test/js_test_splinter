@@ -9,12 +9,10 @@
 
 ulimit -Ss unlimited
 
-module purge
 module load dev_tools/apr2017/gcc-5.2.0
 module load dev_tools/oct2017/python-Anaconda-2-5.0.0.1
 
 export PYTHONPATH=/share/data1/knaidoo/splinter_libraries/pylib:/share/data1/knaidoo/splinter_libraries/pylib/pygadgetreader
-
 export PATH=$PATH:/opt/openmpi/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/data1/knaidoo/splinter_libraries/build/gsl_mpi/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/data1/knaidoo/splinter_libraries/build/fftw3_mpi/lib
