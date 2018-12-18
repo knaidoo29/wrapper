@@ -72,7 +72,8 @@ class MGPicola:
             self.omega_cdm = omega_m - omega_baryon
         self.path = None
         self.root = None
-        self.location = 'splinter'
+        if location is None:
+            self.location = 'splinter'
         camb_path, mpirun_path, mg_picola_exec = source_path.get_src(self.location)
         self.camb_path = camb_path
         self.mpirun_path = mpirun_path
