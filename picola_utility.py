@@ -288,7 +288,7 @@ def mg_picola_paramfile(path, f_r_0, processors, n_grid, n_mesh, box_size, initi
     paramfile.write('input_pofk_is_for_lcdm   1\n')
     paramfile.write('input_sigma8_is_for_lcdm 1\n')
     paramfile.write('inverted_initial_condition 0\n')
-    paramfile.write('amplitude_fixed_initial_condiiton 0\n')
+    paramfile.write('amplitude_fixed_initial_condition 0\n')
     paramfile.write('\n')
     paramfile.write('% Simulation outputs\n')
     paramfile.write('OutputDir                   ' + path + '/output\n')
