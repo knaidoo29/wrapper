@@ -121,5 +121,5 @@ class MGPicola:
         paramfile_path = self.path + '/' + self.root + '/paramfile/paramfile.txt'
         if parallel_setup == 'machinefile':
             subprocess.call(self.mpirun_path + ' --machinefile $PBS_NODEFILE -x PATH -x LD_LIBRARY_PATH ' + self.mg_picola_exec + ' ' + paramfile_path, shell=True)
-        elif parallel_setup == '-n':
+        elif parallel_setup == '-np':
             subprocess.call(self.mpirun_path + ' -np ' + str(self.processors) + ' ' + self.mg_picola_exec + ' ' + paramfile_path, shell=True)
