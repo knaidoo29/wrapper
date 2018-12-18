@@ -6,6 +6,6 @@ root = 'splinter_test'
 redshift = [0., 0.5, 1., 2.]
 steps = [5, 5, 5, 5]
 
-mgp = wrap.MGPicola(n_grid=64, processors=16)
+mgp = wrap.MGPicola(n_grid=64)
 mgp.set_up(path, root, redshift, steps, get_pk=True, get_haloes=True)
-mgp.run()#parallel_setup='-np')
+mgp.run()
