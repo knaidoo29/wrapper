@@ -1,7 +1,7 @@
 import numpy as np
 import wrapper as wrap
 
-path = '/share/data1/knaidoo/splinter_libraries/pylib/wrapper/test/'
+path = '/share/data1/knaidoo/splinter_libraries/pylib/wrapper/test'
 root = 'splinter_test'
 redshift = [0., 0.5, 1., 2.]
 steps = [5, 5, 5, 5]
