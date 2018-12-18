@@ -294,10 +294,7 @@ def mg_picola_paramfile(path, f_r_0, processors, n_grid, n_mesh, box_size, initi
     paramfile.write('OutputDir                   ' + path + '/output\n')
     paramfile.write('FileBase                    particles\n')
     paramfile.write('OutputRedshiftFile          ' + path + '/input/output_redshifts.dat\n')
-    if splinter is False:
-        paramfile.write('NumFilesWrittenInParallel   ' + str(processors) + '\n')
-    else:
-        paramfile.write('NumFilesWrittenInParallel   1\n')
+    paramfile.write('NumFilesWrittenInParallel   1\n')
     paramfile.write('\n')
     paramfile.write('% Simulation specifications\n')
     paramfile.write('UseCOLA          1\n')
