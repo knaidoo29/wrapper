@@ -3,7 +3,7 @@
 #PBS -q cores16
 #PBS -N cola_wrapper_test
 #PBS -l nodes=2:ppn=16
-#PBS -l mem=120gb
+#PBS -l mem=240gb
 #PBS -l walltime=120:00:00
 #PBS -j oe
 
