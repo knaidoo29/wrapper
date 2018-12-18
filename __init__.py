@@ -1,6 +1,5 @@
 # MG-PICOLA wrapper
 from .mg_picola_wrapper import MGPicola
-from picola_utility import get_lightcone_data
 
 # iiiraven copied functions
 from .utility import create_folder
