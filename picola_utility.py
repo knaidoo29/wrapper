@@ -350,7 +350,7 @@ def mg_picola_paramfile(path, f_r_0, processors, n_grid, n_mesh, box_size, initi
     paramfile.write('mm_output_format  0\n')
     paramfile.write('mm_min_npart_halo 10\n')
     paramfile.write('mm_linking_length 0.2\n')
-    paramfile.write('mm_dx_extra_mpc   10.0\n')
+    paramfile.write('mm_dx_extra_mpc   3.0\n')
     paramfile.write('mm_output_pernode 1\n')
     paramfile.close()
 
