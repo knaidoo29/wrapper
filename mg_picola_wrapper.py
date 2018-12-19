@@ -107,10 +107,18 @@ class MGPicola:
         picola_utility.create_camb_ini_file(self.path + '/' + self.root + '/input', self.h_0, self.omega_baryon,
                                             self.omega_cdm, self.omega_lambda, self.omega_neutrino, self.a_s, self.n_s)
         picola_utility.mg_picola_camb(self.path + '/' + self.root + '/input', self.camb_path)
+        """
         matter_pk_file = path + '/' + root + '/input/temp/temp_matterpower_z0.000.dat'
         data = np.loadtxt(matter_pk_file, unpack=True)
         k, pk = data[0], data[1]
         self.sigma_8 = picola_utility.calculate_sigma_8(k, pk)
+        """
+        camb_line = 'at z =  0.000 sigma8 (all matter) = '
+        with open(path + '/' + root + '/input/temp/camb.log') as search:
+            for line in search:
+                line = line.rstrip()  # remove '\n' at end of line
+                if  camb_line == line[:len(camb_line)]:
+                    self.sigma_8 = float(line[len(camb_line):])
         picola_utility.mg_picola_redshifts_files(self.path + '/' + self.root, redshift, steps)
         picola_utility.mg_picola_paramfile(self.path + '/' + self.root, self.f_r_0, self.processors, self.n_grid,
                                            self.n_mesh, self.box_size, self.initial_redshift, self.seed, self.omega,
