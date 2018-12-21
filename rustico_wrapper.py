@@ -114,6 +114,7 @@ class RUSTICO:
             print "\n**** RUNNING ****"
             print "================="
             print "\nSaving temporary ascii file to be read by RUSTICO."
+        self.x, self.y, self.z = utility.check_data_within_box(self.x, self.y, self.z, self.boxsize)
         np.savetxt(self.path + self.ascii_filename + '_' + str(self.identifier) + '.txt', zip(self.x, self.y, self.z, np.ones(len(self.x))))
         if self.useprint is True:
             print "  Temporary ascii file = " + self.path + self.ascii_filename + '_' + str(self.identifier) + '.txt'

@@ -89,3 +89,26 @@ def get_fortran_unformatted_data(fortran_filename, data_structure):
     data = np.fromfile(f, dtype=dt, count=-1)
     f.close()
     return data
+
+
+def check_data_within_box(x, y, z, boxsize):
+    check1 = np.where((x < 0.) | (x > boxsize))[0]
+    check2 = np.where((y < 0.) | (y > boxsize))[0]
+    check3 = np.where((z < 0.) | (z > boxsize))[0]
+    while len(check1) != 0 or len(check2) != 0 or len(check3) != 0:
+        condition = np.where(x <= 0.)[0]
+        x[condition] += boxsize
+        condition = np.where(y <= 0.)[0]
+        y[condition] += boxsize
+        condition = np.where(z <= 0.)[0]
+        z[condition] += boxsize
+        condition = np.where(x >= boxsize)[0]
+        x[condition] -= boxsize
+        condition = np.where(y >= boxsize)[0]
+        y[condition] -= boxsize
+        condition = np.where(z >= boxsize)[0]
+        z[condition] -= boxsize
+        check1 = np.where((x < 0.) | (x > boxsize))[0]
+        check2 = np.where((y < 0.) | (y > boxsize))[0]
+        check3 = np.where((z < 0.) | (z > boxsize))[0]
+    return x, y, z
