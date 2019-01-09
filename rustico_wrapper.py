@@ -2,6 +2,7 @@ import subprocess
 import os
 import numpy as np
 import rustico_utility
+import utility
 
 
 class RUSTICO:
