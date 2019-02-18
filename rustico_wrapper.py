@@ -151,9 +151,9 @@ class RUSTICO:
     def get_bk(self):
         bispectrum_file = self.path + 'Bispectrum_' + self.root + '_' + str(self.identifier) + '.txt'
         data = np.loadtxt(bispectrum_file, unpack=True)
-        k1_eff = data[1]
-        k2_eff = data[3]
-        k3_eff = data[5]
+        k1_eff = data[0]
+        k2_eff = data[2]
+        k3_eff = data[4]
         bk = data[6]
         return k1_eff, k2_eff, k3_eff, bk
 
