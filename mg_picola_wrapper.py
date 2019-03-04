@@ -74,6 +74,8 @@ class MGPicola:
         self.root = None
         if location is None:
             self.location = 'splinter'
+        else:
+            self.location = location
         camb_path, mpirun_path, mg_picola_exec = source_path.get_src(self.location)
         self.camb_path = camb_path
         self.mpirun_path = mpirun_path
@@ -107,12 +109,6 @@ class MGPicola:
         picola_utility.create_camb_ini_file(self.path + '/' + self.root + '/input', self.h_0, self.omega_baryon,
                                             self.omega_cdm, self.omega_lambda, self.omega_neutrino, self.a_s, self.n_s)
         picola_utility.mg_picola_camb(self.path + '/' + self.root + '/input', self.camb_path)
-        """
-        matter_pk_file = path + '/' + root + '/input/temp/temp_matterpower_z0.000.dat'
-        data = np.loadtxt(matter_pk_file, unpack=True)
-        k, pk = data[0], data[1]
-        self.sigma_8 = picola_utility.calculate_sigma_8(k, pk)
-        """
         camb_line = 'at z =  0.000 sigma8 (all matter) = '
         with open(path + '/' + root + '/input/temp/camb.log') as search:
             for line in search:
