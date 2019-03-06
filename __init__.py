@@ -7,6 +7,10 @@ from .utility import integrate
 from .utility import get_gadget_data
 from .utility import get_fortran_unformatted_data
 
-# RUSTICO Wrapper
+# ROCKSTAR Wrapper
+from .rockstar_utility import get_gadget_particles
+from .rockstar_utility import get_particle_mass
+from .rockstar_wrapper import Rockstar
 
+# RUSTICO Wrapper
 from .rustico_wrapper import RUSTICO
