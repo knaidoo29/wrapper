@@ -26,10 +26,13 @@ def get_particle_mass(omega_m, boxsize, nsample):
 
 
 def create_rockstar_config_file(h0, omega_m, omega_l, boxsize, nsample, nmesh, redshift,
-                                path, root, parts, parallel, periodic=True, min_halo_part=10):
+                                path, root, parts, parallel, use_gadget=True, periodic=True, min_halo_part=10):
     subprocess.call('touch '+path+'/rockstar_temp.cfg', shell=True)
     rockstar_temp = open(path+'/rockstar_temp.cfg', 'w')
-    rockstar_temp.write("FILE_FORMAT = \"ASCII\" \n")
+    if use_gadget is True:
+        rockstar_temp.write("FILE_FORMAT = \"GADGET2\" \n")
+    else:
+        rockstar_temp.write("FILE_FORMAT = \"ASCII\" \n")
     rockstar_temp.write("PARTICLE_MASS = "+str(get_particle_mass(omega_m, boxsize, nsample))+"\n")
     rockstar_temp.write("SCALE_NOW = " + str(1./(1.+redshift)) + "\n")
     rockstar_temp.write("h0 = " + str(h0) + "\n")
@@ -39,14 +42,23 @@ def create_rockstar_config_file(h0, omega_m, omega_l, boxsize, nsample, nmesh, r
         rockstar_temp.write("PERIODIC=0\n")
     else:
         pass
+    if use_gadget is True:
+        rockstar_temp.write("GADGET_LENGTH_CONVERSION = 1\n")
+        rockstar_temp.write("GADGET_MASS_CONVERSION = 1e+10\n")
     rockstar_temp.write("BOX_SIZE = " + str(boxsize) + "\n")
     rockstar_temp.write("FORCE_RES = " + str(0.01*boxsize/(2.*nmesh)) + "\n")
     rockstar_temp.write("TOTAL_PARTICLES = " + str(nsample**3) + "\n")
     rockstar_temp.write("PARALLEL_IO=1\n")
-    rockstar_temp.write("INBASE=\"" + path + "\"\n")
+    if use_gadget is False:
+        rockstar_temp.write("INBASE=\"" + path + "\"\n")
+        rockstar_temp.write("FILENAME=\"" + root + "\"\n")
+    else:
+        rockstar_temp.write("INBASE=\"" + path + "\"\n")
+        rockstar_temp.write("FILENAME=\"" + root + ".<block>\"\n")
+        rockstar_temp.write("NUM_SNAPS=1\n")
+        rockstar_temp.write("NUM_BLOCKS=" + str(parts) + "\n")
     rockstar_temp.write("OUTBASE=\"" + path + "\"\n")
     rockstar_temp.write("MIN_HALO_OUTPUT_SIZE = "+str(min_halo_part)+"\n")
-    rockstar_temp.write("FILENAME=\"" + root + "\"\n")
     rockstar_temp.write("NUM_WRITERS=" + str(parallel) + "\n")
     rockstar_temp.write("FORK_READERS_FROM_WRITERS = 1\n")
     rockstar_temp.write("FORK_PROCESSORS_PER_MACHINE =" + str(parallel) + "\n")
