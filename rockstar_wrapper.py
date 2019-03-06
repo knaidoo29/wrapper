@@ -22,7 +22,7 @@ class Rockstar:
         self.min_halo_part = None
 
     def setup(self, h0, omega_m, omega_l, boxsize, nsample, nmesh, redshift,
-              path, root, parts, parallel, periodic=True, min_halo_part=10, use_gadget=True):
+              path, root, parts, parallel, periodic=True, min_halo_part=10, use_gadget=False):
         self.h0 = h0
         self.omega_m = omega_m
         self.omega_l = omega_l

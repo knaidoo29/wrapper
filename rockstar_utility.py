@@ -46,8 +46,9 @@ def create_rockstar_config_file(h0, omega_m, omega_l, boxsize, nsample, nmesh, r
         rockstar_temp.write("GADGET_LENGTH_CONVERSION = 1\n")
         rockstar_temp.write("GADGET_MASS_CONVERSION = 1e+10\n")
     rockstar_temp.write("BOX_SIZE = " + str(boxsize) + "\n")
-    rockstar_temp.write("FORCE_RES = " + str(0.01*boxsize/(2.*nmesh)) + "\n")
+    rockstar_temp.write("FORCE_RES = " + str(boxsize/(2.*nmesh)) + "\n")
     rockstar_temp.write("TOTAL_PARTICLES = " + str(nsample**3) + "\n")
+    rockstar_temp.write("IGNORE_PARTICLE_IDS = 1\n")
     rockstar_temp.write("PARALLEL_IO=1\n")
     if use_gadget is False:
         rockstar_temp.write("INBASE=\"" + path + "\"\n")
