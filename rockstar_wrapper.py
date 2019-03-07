@@ -79,9 +79,9 @@ class Rockstar:
 
     def run(self, location='home'):
         camb_path, mpirun_path, mg_picola_exec, rockstar_exec = source_path.get_src(location)
-        fname_exist = False
-        while fname_exist is False:
-            subprocess.call(rockstar_exec + " -c " + self.path+'rockstar_temp.cfg &', shell=True)
-            subprocess.call(rockstar_exec + " -c " + self.path+'auto-rockstar.cfg', shell=True)
-            fname = self.path + 'halos_0.0.ascii'
-            fname_exist = os.path.isfile(fname)
+        #fname_exist = False
+        #while fname_exist is False:
+        subprocess.call(rockstar_exec + " -c " + self.path+'rockstar_temp.cfg &', shell=True)
+        subprocess.call(rockstar_exec + " -c " + self.path+'auto-rockstar.cfg', shell=True)
+        #fname = self.path + 'halos_0.0.ascii'
+        #fname_exist = os.path.isfile(fname)
