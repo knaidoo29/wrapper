@@ -3,6 +3,22 @@ import subprocess
 
 
 def get_gadget_particles(root, parts):
+    """Opens an ascii gadget particle file.
+
+    Parameters
+    ----------
+    root : str
+        Particle filename root.
+    parts : int
+        The particle file parts.
+
+    Returns
+    -------
+    x, y, z : array_like
+        3D coordinate positions.
+    vx, vy, vz : array_like
+        The euclidean components of the velocity of each particles.
+    """
     for i in range(0, parts):
         filename = root + '.' + str(i)
         _data = np.loadtxt(filename, unpack=True, skiprows=1)
@@ -15,6 +31,22 @@ def get_gadget_particles(root, parts):
 
 
 def get_particle_mass(omega_m, boxsize, nsample):
+    """Calculates the particle mass in a simulation.
+
+    Parameters
+    ----------
+    omega_m : float
+        Matter density.
+    boxsize : float
+        Size of simulation box, in Mpc/h.
+    nsample : int
+        Size of particle grid.
+
+    Returns
+    -------
+    part_mass : float
+        Dark matter particle mass.
+    """
     G = 6.67408e-11
     Mpc = 3.085678e22
     H0 = 100.*1000./Mpc
@@ -26,9 +58,43 @@ def get_particle_mass(omega_m, boxsize, nsample):
 
 
 def create_rockstar_config_file(h0, omega_m, omega_l, boxsize, nsample, nmesh, redshift,
-                                path, root, parts, parallel, use_gadget=True, periodic=True, min_halo_part=10):
-    subprocess.call('touch '+path+'/rockstar_temp.cfg', shell=True)
-    rockstar_temp = open(path+'/rockstar_temp.cfg', 'w')
+                                path, root, parts, parallel, use_gadget=True, periodic=True,
+                                min_halo_part=10):
+    """Create the rockstar configuration file.
+
+    Parameters
+    ----------
+    h0 : float
+        Hubble constant / 100.
+    omega_m : float
+        Matter density.
+    omega_l : float
+        Lambda density.
+    boxsize : float
+        Size of simulation box, in Mpc/h.
+    nsample : int
+        Size of particle grid.
+    nmesh : int
+        size of the density grid.
+    redshift : float
+        Redshift of the simulation box.
+    path : str
+        Folder path of the output and input files.
+    root : str
+        Particle filename root.
+    parts : int
+        The particle file parts.
+    parallel : int
+        Number of cores to use.
+    use_gadget : bool, optional
+        To use gadget file type or not... currently doesn't work.
+    periodic : bool, optional
+        Set periodic conditions or not... currently doesn't work.
+    min_halo_part : int, optional
+        Minimum number of particles for a group considered to be called a halo.
+    """
+    subprocess.call('touch '+path+'rockstar_temp.cfg', shell=True)
+    rockstar_temp = open(path+'rockstar_temp.cfg', 'w')
     if use_gadget is True:
         rockstar_temp.write("FILE_FORMAT = \"GADGET2\" \n")
     else:
