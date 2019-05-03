@@ -108,6 +108,8 @@ class MGPicola:
         util.create_folder('output/', path=path + '/' + root+'/')
         picola_utility.create_camb_ini_file(self.path + '/' + self.root + '/input', self.h_0, self.omega_baryon,
                                             self.omega_cdm, self.omega_lambda, self.omega_neutrino, self.a_s, self.n_s)
+        print self.path
+        print self.root
         picola_utility.mg_picola_camb(self.path + '/' + self.root + '/input', self.camb_path)
         camb_line = 'at z =  0.000 sigma8 (all matter) = '
         with open(path + '/' + root + '/input/temp/camb.log') as search:
