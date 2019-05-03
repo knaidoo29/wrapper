@@ -76,7 +76,7 @@ class MGPicola:
             self.location = 'splinter'
         else:
             self.location = location
-        camb_path, mpirun_path, mg_picola_exec = source_path.get_src(self.location)
+        camb_path, mpirun_path, mg_picola_exec, rockstar_exec = source_path.get_src(self.location)
         self.camb_path = camb_path
         self.mpirun_path = mpirun_path
         self.mg_picola_exec = mg_picola_exec
