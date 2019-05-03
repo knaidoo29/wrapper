@@ -2,6 +2,7 @@
 MG-PICOLA"""
 
 import numpy as np
+import os
 import subprocess
 import picola_utility
 import utility as util
@@ -108,10 +109,10 @@ class MGPicola:
         util.create_folder('output/', path=path + '/' + root+'/')
         picola_utility.create_camb_ini_file(self.path + '/' + self.root + '/input', self.h_0, self.omega_baryon,
                                             self.omega_cdm, self.omega_lambda, self.omega_neutrino, self.a_s, self.n_s)
-        print self.path
-        print self.root
         picola_utility.mg_picola_camb(self.path + '/' + self.root + '/input', self.camb_path)
         camb_line = 'at z =  0.000 sigma8 (all matter) = '
+        if os.path.isfile(path + '/' + root + '/input/temp/temp_matterpower_z0.000.dat') != True:
+            subprocess.call('bash '+ path + '/' + root + '/input/gen_camb.sh', shell=True)
         with open(path + '/' + root + '/input/temp/camb.log') as search:
             for line in search:
                 line = line.rstrip()  # remove '\n' at end of line
