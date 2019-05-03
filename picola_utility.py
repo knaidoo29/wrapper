@@ -200,7 +200,7 @@ def mg_picola_camb(path, camb_path):
     gen_camb_file.write('done\n')
     gen_camb_file.write('printf "$picola_file" > $picola_output_filename\n')
     gen_camb_file.write('printf "$camb_param\n $tmp_file" > $camb_input_filename\n')
-    gen_camb_file.write('./camb $camb_input_filename > camb.log\n')
+    gen_camb_file.write('./camb $camb_input_filename > camb.log \n')
     gen_camb_file.write('rm ' + path + '/temp/camb\n')
     gen_camb_file.write('rm ' + path + '/temp/HighLExtrapTemplate_lenspotentialCls.dat\n')
     gen_camb_file.close()

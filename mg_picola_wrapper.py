@@ -111,8 +111,12 @@ class MGPicola:
                                             self.omega_cdm, self.omega_lambda, self.omega_neutrino, self.a_s, self.n_s)
         picola_utility.mg_picola_camb(self.path + '/' + self.root + '/input', self.camb_path)
         camb_line = 'at z =  0.000 sigma8 (all matter) = '
-        if os.path.isfile(path + '/' + root + '/input/temp/temp_matterpower_z0.000.dat') != True:
+        print path, root
+        print '/share/data1/knaidoo/ISW/2019_isw_big_sim/data/sim_5000/input'
+        count = 0
+        while os.path.isfile(path + '/' + root + '/input/temp/temp_matterpower_z0.000.dat') == False and count < 10:
             subprocess.call('bash '+ path + '/' + root + '/input/gen_camb.sh', shell=True)
+            count += 1
         with open(path + '/' + root + '/input/temp/camb.log') as search:
             for line in search:
                 line = line.rstrip()  # remove '\n' at end of line
